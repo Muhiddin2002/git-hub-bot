@@ -1,6 +1,18 @@
 const TeleBot = require('telebot');
 const bot = new TeleBot('423747052:AAFHbER65H7wxbnMpZR8OHuIccRE8oivXko');
+const express = require('express')
+const PORT = process.env.PORT || 5000
 
+app = express(),
+    http = require('http'),
+    httpServer = http.Server(app);
+
+app.use(express.static(__dirname + '/web/'));
+
+app.get('/', function (req, res) {
+    res.sendfile(__dirname + '/web/index.html');
+});
+app.listen(PORT);
 
 bot.on(['/start', '/back'], msg => {
     const glavniy = bot.keyboard([
